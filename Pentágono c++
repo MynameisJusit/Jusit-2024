@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cmath> //Agrega funciones matematicas
+using namespace std;
+float pentagono_area(double, const int); //Funcion prototipo
+double pentagono_perimetro(double, const int); //Funcion prototipo
+double pentagono_perimetro(double p[], const int tamanio){ //Funcion para calcular el perimetro
+    p[1] = p[0] * 5; //Multiplica el valor de la posicion 0 por 5 para obtener el perimetro
+    return(p[1]); //Regresa el valor final a la posición 1 de la variable pentagono
+}
+float pentagono_area(double a[], const int tamanio){ //Funcion para calcular el area
+    /*
+    Formula usada a partir del Lado:
+         (5)(L^2)
+    A = —————————
+        4tan(PI/5)
+    */
+    a[3] = 3.141598; //A la posicion 3 se le asigna el valor de PI
+    a[2] = 5 * (a[0] * a[0]); //Primera modificación antes de llegar al valor del area
+    a[4] = 4 * tan(a[3]/5); //Se crea la variable auxiliar que dividira la primera modificación
+    a[2] = a[2]/a[4]; //Se calcula segun la formula y se obtien el valor del area, se asigna en la segunda posición
+    return(a[2]); //Regregra el valor final a la posición 2 de la variable pentagono
+}
+/*
+pentagono [0] = Lado
+pentagono [1] = Perimetro
+pentagono [2] = Area
+pentagono [3] = PI
+pentagono [4] = Auxiliar
+*/
+int main()
+{
+    const int tamanio = 5; //Indica el tamaño del arreglo
+    double pentagono[tamanio] = {0, 0, 0, 0, 0}; //posiciones 0, 1, 2, 3, 4
+    cout << "Area y Perimetro de un Pentagono regular" << endl;
+    cout << "Ingrese el Lado 1 del pentagono: " << endl;
+    cin >> pentagono[0]; //Posición 0
+    pentagono_perimetro(pentagono, tamanio); //LLama a la función para extraer el valor de pentagono[] linea 6 a 9
+    pentagono_area(pentagono, tamanio); //LLama a la función para extraer el valor de pentagono[] linea 10 a 23
+    cout << "El valor del perimetro de lado: " << pentagono[0] << " es:" << endl;
+    cout << pentagono[1] << " Unidades" << endl; //imprime el valor del perimetro
+    cout << "El valor del area de lado: " << pentagono[0] << " es:" << endl;
+    cout << pentagono[2] << " Unidades" << endl; //Imprime el valor del area
+    return 0;
+}
